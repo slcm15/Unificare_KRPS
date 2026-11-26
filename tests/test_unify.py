@@ -1,8 +1,4 @@
-"""Tests for substitutions and the two unification algorithms.
 
-Every case of the documented catalogue (fol/catalog.py, docs/TEST_CASES.md) is
-checked, plus algebraic properties of substitutions and of the MGU.
-"""
 import unittest
 
 from fol import Substitution, is_variant, match, parse_atom, parse_term, unify, unify_mm, unify_verbose

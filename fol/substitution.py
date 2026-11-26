@@ -1,13 +1,4 @@
-"""Substitutions: finite mappings from variables to terms.
 
-A substitution ``sigma = {X1/t1, ..., Xn/tn}`` replaces, *simultaneously*, every
-occurrence of ``Xi`` by ``ti``.  The notation ``X/t`` ("X is replaced by t")
-follows Russell & Norvig, *Artificial Intelligence: A Modern Approach*.
-
-The unification algorithms in this project always build **idempotent**
-substitutions (no variable of the domain occurs in the range), so applying a
-substitution once is enough: ``apply(apply(e)) == apply(e)``.
-"""
 from __future__ import annotations
 
 from collections.abc import Iterable, Iterator, Mapping
