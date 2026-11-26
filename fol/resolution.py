@@ -1,29 +1,4 @@
-"""A small resolution theorem prover built on top of the unification module.
 
-Inference rules (Robinson, 1965) - both complete for refutation together:
-
-* **binary resolution**::
-
-        L1 | C1        ~L2 | C2         sigma = MGU(L1, L2)
-        ---------------------------------------------------
-                      (C1 | C2) sigma
-
-* **factoring**::
-
-        L1 | L2 | C        sigma = MGU(L1, L2)
-        --------------------------------------
-                    (L1 | C) sigma
-
-Search: the *given-clause* algorithm (as in Otter / Prover9) with
-
-* the **set-of-support** strategy - two clauses of the knowledge base are never
-  resolved together; every inference involves the negated goal or a clause
-  derived from it,
-* **subsumption** (forward and backward) and **tautology deletion**,
-* weight-based clause selection mixed with FIFO selection for fairness,
-* **answer extraction** with an ``Answer(...)`` literal (Green's method), which
-  turns the prover into a question-answering system.
-"""
 from __future__ import annotations
 
 import re
@@ -44,16 +19,7 @@ _COPY_VAR = re.compile(r"\b([A-Z_][A-Za-z0-9_']*?)_(\d+)\b")
 
 
 def renamed_copy(clause: Clause, tag: int) -> Clause:
-    """Copy of a clause with every variable ``X`` renamed to ``X_tag`` (*standardizing apart*).
 
-    Two clauses must not share variables before they are resolved: the
-    variables of a clause are implicitly universally quantified, so ``p(X)``
-    and ``~p(f(X))`` are refutable together although ``X`` does not unify
-    with ``f(X)``.  The prover tags the copy with the clause number, so
-    ``X_3`` reads as "the variable X of clause 3".  Clauses kept by the prover
-    are normalized and never contain a ``_<digits>`` suffix, hence a copy never
-    shares variables with another kept clause.
-    """
     mapping = {var: Variable(f"{_SUFFIX.sub('', var.name)}_{tag}") for var in clause.variables()}
     return clause.apply(Substitution(mapping))
 
@@ -111,11 +77,7 @@ def factors(clause: Clause) -> Iterator[Inference]:
 
 
 def subsumes(c: Clause, d: Clause) -> bool:
-    """theta-subsumption: is there a ``theta`` with ``c theta`` a subset of ``d``?
 
-    A subsumed clause ``d`` is redundant: everything it could prove, ``c`` proves
-    with fewer (or equal) literals.  Variables of ``d`` are treated as constants.
-    """
     if len(c) > len(d) or not c.signature <= d.signature:
         return False
     c_lits = sorted(c.literals, key=lambda lit: -len(str(lit)))  # most constrained first

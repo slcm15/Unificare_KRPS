@@ -1,11 +1,4 @@
-"""A catalogue of unification test cases with explanations.
 
-The same data drives three things:
-
-* the automated tests (``tests/test_unify.py``),
-* the ``python main.py demo`` command,
-* the generated document ``docs/TEST_CASES.md`` (``python main.py demo --markdown``).
-"""
 from __future__ import annotations
 
 from dataclasses import dataclass

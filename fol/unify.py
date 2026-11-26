@@ -1,23 +1,4 @@
-"""Unification of first-order terms, atoms and literals.
 
-Two algorithms are provided:
-
-* :func:`unify` / :func:`unify_verbose` - **Robinson's algorithm** (1965), the
-  classical algorithm used in resolution theorem provers and Prolog.  It walks
-  the two expressions in parallel, finds the first *disagreement pair* and
-  resolves it by binding a variable, until the expressions become identical.
-
-* :func:`unify_mm` - the **Martelli-Montanari** algorithm (1982), which views
-  unification as solving a set of equations ``{s1 = t1, ..., sn = tn}`` with six
-  transformation rules (Delete, Decompose, Conflict, Swap, Eliminate, Check).
-
-Both return the **most general unifier** (MGU): a substitution ``sigma`` with
-``sigma(x) == sigma(y)`` such that every other unifier is an instance of ``sigma``.
-The MGU is unique up to renaming of variables.
-
-The module also offers one-way :func:`match`-ing (used for subsumption) and a
-:func:`is_variant` test.
-"""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
