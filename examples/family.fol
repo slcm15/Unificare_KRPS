@@ -1,0 +1,21 @@
+# Family relations: recursive rules and queries with several answers.
+
+parent(tom, bob)
+parent(tom, liz)
+parent(bob, ann)
+parent(bob, pat)
+parent(pat, jim)
+
+all X Y Z. (parent(X, Y) & parent(Y, Z) -> grandparent(X, Z))
+all X Y. (parent(X, Y) -> ancestor(X, Y))
+all X Y Z. (parent(X, Y) & ancestor(Y, Z) -> ancestor(X, Z))
+all X Y Z. (parent(Z, X) & parent(Z, Y) & ~same(X, Y) -> sibling(X, Y))
+all X. same(X, X)
+~same(ann, pat)
+~same(bob, liz)
+
+? grandparent(tom, Who)
+? ancestor(tom, jim)
+? ancestor(Who, jim)
+? sibling(ann, Who)
+? grandparent(jim, tom)

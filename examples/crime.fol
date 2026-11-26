@@ -1,0 +1,17 @@
+# Colonel West - Russell & Norvig, AIMA 3rd ed., Section 9.3.1.
+#
+# The law says that it is a crime for an American to sell weapons to hostile
+# nations. The country Nono, an enemy of America, has some missiles, and all
+# of its missiles were sold to it by Colonel West, who is American.
+
+all X Y Z. (american(X) & weapon(Y) & sells(X, Y, Z) & hostile(Z) -> criminal(X))
+exists X. (owns(nono, X) & missile(X))
+all X. (missile(X) & owns(nono, X) -> sells(west, X, nono))
+all X. (missile(X) -> weapon(X))
+all X. (enemy(X, america) -> hostile(X))
+american(west)
+enemy(nono, america)
+
+? criminal(west)
+? criminal(Who)
+? exists W. (weapon(W) & owns(nono, W))

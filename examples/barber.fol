@@ -1,0 +1,5 @@
+# The barber paradox: "the barber shaves exactly those who do not shave themselves".
+# The sentence is contradictory, so its negation is a theorem.  Proving it
+# needs the FACTORING rule: binary resolution alone cannot refute these clauses.
+
+? ~(exists B. all X. (shaves(B, X) <-> ~shaves(X, X)))

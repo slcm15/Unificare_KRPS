@@ -1,0 +1,5 @@
+# Drinker's paradox (a valid formula of pure logic, with an empty knowledge base):
+# "There is someone in the pub such that, if he is drinking, everyone in the pub is drinking."
+# Its proof needs Skolem functions coming from the NEGATED goal.
+
+? exists X. (drinks(X) -> all Y. drinks(Y))

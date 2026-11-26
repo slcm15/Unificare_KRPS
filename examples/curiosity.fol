@@ -1,0 +1,17 @@
+# "Curiosity killed the cat" - Russell & Norvig, AIMA 3rd ed., Section 9.5.3.
+#
+# Jack owns a dog. Every dog owner is an animal lover. No animal lover kills
+# an animal. Either Jack or Curiosity killed the cat, who is named Tuna.
+# Did Curiosity kill the cat?
+#
+# Needs Skolemization (the dog Jack owns has no name) and nested quantifiers.
+
+exists X. (dog(X) & owns(jack, X))
+all X. ((exists Y. (dog(Y) & owns(X, Y))) -> animal_lover(X))
+all X. (animal_lover(X) -> (all Y. (animal(Y) -> ~kills(X, Y))))
+kills(jack, tuna) | kills(curiosity, tuna)
+cat(tuna)
+all X. (cat(X) -> animal(X))
+
+? kills(curiosity, tuna)
+? kills(Who, tuna)

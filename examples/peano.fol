@@ -1,0 +1,10 @@
+# Addition on Peano numerals:  0, s(0), s(s(0)), ...
+#   plus(0, Y, Y).     plus(s(X), Y, s(Z)) <- plus(X, Y, Z).
+# Queries are answered by computing with unification (as Prolog does).
+
+all Y. plus(0, Y, Y)
+all X Y Z. (plus(X, Y, Z) -> plus(s(X), Y, s(Z)))
+
+? plus(s(s(0)), s(0), R)          # 2 + 1 = ?
+? plus(A, s(0), s(s(s(0))))       # A + 1 = 3 ?
+? exists N. plus(N, N, s(s(s(s(0)))))   # is 4 even?

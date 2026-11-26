@@ -1,0 +1,9 @@
+# The classic syllogism.
+#   All men are mortal.  Socrates is a man.  Therefore Socrates is mortal.
+
+all X. (man(X) -> mortal(X))
+man(socrates)
+
+? mortal(socrates)          # yes/no question
+? mortal(Who)               # who is mortal?  (answer extraction)
+? mortal(zeus)              # does NOT follow: the prover saturates
