@@ -10,7 +10,7 @@ T = parse_term
 
 
 class TestCatalogue(unittest.TestCase):
-    """The documented examples behave exactly as described."""
+
 
     def test_robinson_matches_documentation(self):
         for case in CASES:
